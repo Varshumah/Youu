@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Envelope Letter Animation</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    width: 300px;
+    text-align: center;
+  }
+  .envelope {
+    position: relative;
+    width: 280px;
+    height: 160px;
+    background: #c0392b;
+    border-radius: 10px;
+    cursor: pointer;
+    perspective: 800px;
+    margin: 0 auto;
+  }
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 80px;
+    background: #e74c3c;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transition: transform 1s ease;
+    backface-visibility: hidden;
+    border-radius: 10px 10px 0 0;
+  }
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
+  .letter {
+    position: absolute;
+    top: 140px;
+    left: 20px;
+    width: 240px;
+    height: 140px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #c0392b;
+    user-select: none;
+    transition: top 1s ease;
+    overflow-y: auto;
+  }
+  .envelope.open .letter {
+    top: 10px;
+  }
+  /* Blue flashcard with buttons */
+  .flashcard {
+    margin: 20px auto 0;
+    background-color: #2980b9;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: none;
+    justify-content: center;
+    gap: 20px;
+  }
+  .flashcard.show {
+    display: flex;
+  }
+  .flashcard button {
+    background: #3498db;
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .flashcard button:hover {
+    background: #5dade2;
+  }
+  .message {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #222;
+    min-height: 30px;
+  }
+  /* Hide the iframe player */
+  iframe#musicPlayer {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="envelope" id="envelope" title="Click to open the envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h3 style="margin-top:0;">Happy 1 Year Anniversary 💙🌍</h3>
+      <p>
+        It may be small, but this is my piece of my heart 💙✨<br>
+        I will be with you in ur both happiness and saddest place.<br>
+        1 year pola unkuda 100 years erukanum nishh 💙🤌🏻<br>
+        Love yeww daw ny blue ehhhh 💙🙌🏻🙂‍↔️🫣✨<br>
+        Umahhhhh
+      </p>
+    </div>
+  </div>
+
+  <div class="flashcard" id="flashcard">
+    <button id="acceptBtn">Accept</button>
+    <button id="denyBtn">Deny</button>
+  </div>
+
+  <div class="message" id="message"></div>
+</div>
+
+<!-- YouTube music iframe -->
+<iframe id="musicPlayer" 
+  src="https://www.youtube.com/embed/5tMq1BxPdLo?autoplay=1&loop=1&playlist=5tMq1BxPdLo" 
+  frameborder="0" allow="autoplay" allowfullscreen>
+</iframe>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const flashcard = document.getElementById('flashcard');
+  const message = document.getElementById('message');
+
+  envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+    flashcard.classList.add('show');
+    message.textContent = '';
+  });
+
+  document.getElementById('acceptBtn').addEventListener('click', () => {
+    message.textContent = "Thank yeww daw now ur girl is happy 💙";
+  });
+
+  document.getElementById('denyBtn').addEventListener('click', () => {
+    message.textContent = "Is ur letter how dare you will reject mines accept it 😢";
+  });
+</script>
+
+</body>
+  </html>
